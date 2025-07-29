@@ -1,0 +1,25 @@
+{
+  "name": "bajaj-assignment",
+  "version": "1.0.0",
+  "description": "REST API for Bajaj Assignment",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "api",
+    "express",
+    "rest"
+  ],
+  "author": "Harshit Bagga",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
