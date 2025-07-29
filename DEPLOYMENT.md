@@ -1,95 +1,93 @@
-# 🚀 Deployment Guide (Vercel Only)
+# Deployment Guide
 
-This guide helps you deploy your Bajaj Assignment API to [Vercel](https://vercel.com).
+This guide will help you deploy your Bajaj Assignment API to various hosting platforms.
 
----
+## 🚀 Quick Deployment Options
 
-## 📁 Project Structure
+### Option 1: Render (Recommended for Beginners)
 
-Make sure your backend code has the following structure:
+1. **Create a GitHub Repository**
+   - Push your code to GitHub
+   - Make sure all files are committed
 
-```
-📦bajaj-assignment
- ┣ 📂controller
- ┃ ┗ 📄bfhl.controller.js
- ┣ 📂routes
- ┃ ┗ 📄bfhl.routes.js
- ┣ 📂utils
- ┃ ┗ 📄processor.js
- ┣ 📄index.js
- ┣ 📄.env
- ┣ 📄.vercelignore
- ┣ 📄vercel.json
- ┣ 📄package.json
- ┗ 📄README.md
-```
+2. **Deploy on Render**
+   - Go to [render.com](https://render.com)
+   - Sign up/Login with GitHub
+   - Click "New +" → "Web Service"
+   - Connect your GitHub repository
+   - Configure:
+     - **Name**: `bajaj-assignment-api`
+     - **Build Command**: `npm install`
+     - **Start Command**: `npm start`
+     - **Environment**: Node
+   - Add Environment Variables:
+     - `USER_ID`: `yourname_01012024`
+     - `EMAIL`: `youremail@example.com`
+     - `ROLL_NUMBER`: `your_roll_number`
+   - Click "Create Web Service"
 
----
+3. **Get Your Live URL**
+   - Render will provide a URL like: `https://your-app-name.onrender.com`
+   - Your API endpoint will be: `https://your-app-name.onrender.com/bfhl`
 
-## 🔧 Step-by-Step Vercel Deployment
+### Option 2: Railway
 
-### 1. ✅ Pre-Requisites
-- Install [Vercel CLI](https://vercel.com/docs/cli) (optional)
-- Node.js project with `npm start` command
-- `.env` file with your variables
+1. **Deploy on Railway**
+   - Go to [railway.app](https://railway.app)
+   - Sign up/Login with GitHub
+   - Click "New Project" → "Deploy from GitHub repo"
+   - Select your repository
+   - Add Environment Variables in the Variables tab
+   - Railway will auto-deploy
 
-### 2. 🛠️ Push Your Project to GitHub
+### Option 3: Cyclic
 
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/yourusername/bajaj-assignment.git
-git push -u origin main
-```
+1. **Deploy on Cyclic**
+   - Go to [cyclic.sh](https://cyclic.sh)
+   - Sign up/Login with GitHub
+   - Click "Link Your Own" → Select your repository
+   - Add Environment Variables
+   - Deploy automatically
 
----
+## 🔧 Environment Variables Setup
 
-### 3. 🚀 Deploy on Vercel
-
-1. Go to [vercel.com](https://vercel.com)
-2. Sign in with GitHub and click "New Project"
-3. Import your GitHub repository
-4. During configuration:
-   - **Framework Preset**: `Other`
-   - **Build Command**: `npm install`
-   - **Output Directory**: `.` (root)
-   - **Install Command**: `npm install`
-   - **Start Command**: `npm start`
-5. Set Environment Variables:
-   - `USER_ID` = `harshit_bagga_31032004`
-   - `EMAIL` = `harshit1634.be22@chitkara.edu.in`
-   - `ROLL_NUMBER` = `2210991634`
-6. Click **Deploy**
-
----
-
-## 🧪 Test Your Deployed API
-
-Once deployed, Vercel will give you a URL like:
-
-```
-https://bajaj-assignment.vercel.app
-```
-
-Test with:
+Make sure to set these environment variables in your hosting platform:
 
 ```bash
-curl -X POST https://bajaj-assignment.vercel.app/bfhl \
+USER_ID=yourname_01012024
+EMAIL=youremail@example.com
+ROLL_NUMBER=your_roll_number
+```
+
+## 🧪 Testing Your Deployed API
+
+Once deployed, test your API with:
+
+```bash
+curl -X POST https://your-app-url.com/bfhl \
   -H "Content-Type: application/json" \
   -d '{"data": ["2", "a", "y", "4", "&", "-", "*", "5", "92", "b"]}'
 ```
 
----
+Or use Postman:
+- **Method**: POST
+- **URL**: `https://your-app-url.com/bfhl`
+- **Headers**: `Content-Type: application/json`
+- **Body**: 
+```json
+{
+  "data": ["2", "a", "y", "4", "&", "-", "*", "5", "92", "b"]
+}
+```
 
-## ✅ Sample Response
+## ✅ Expected Response
 
 ```json
 {
   "is_success": true,
-  "user_id": "harshit_bagga_31032004",
-  "email": "harshit1634.be22@chitkara.edu.in",
-  "roll_number": "2210991634",
+  "user_id": "yourname_01012024",
+  "email": "youremail@example.com",
+  "roll_number": "your_roll_number",
   "odd_numbers": ["5"],
   "even_numbers": ["2", "4", "92"],
   "alphabets": ["A", "Y", "B"],
@@ -99,25 +97,41 @@ curl -X POST https://bajaj-assignment.vercel.app/bfhl \
 }
 ```
 
----
-
 ## 🐛 Troubleshooting
 
-- **500 Error**: Check `vercel logs` in dashboard
-- **Env variables not loaded**: Recheck spelling & Vercel dashboard values
-- **Wrong endpoint**: Confirm if route is correctly defined (`/bfhl`)
-- **API not working**: Use Postman or cURL to verify
+### Common Issues:
 
----
+1. **Build Fails**
+   - Check if `package.json` is in the root directory
+   - Ensure all dependencies are listed in `package.json`
 
-## 🎯 Interview Checklist
+2. **Environment Variables Not Working**
+   - Double-check variable names in hosting platform
+   - Make sure they match exactly with what's in your code
 
-- ✅ Working live URL
-- ✅ API accepts JSON array and returns correct format
-- ✅ Valid error handling
-- ✅ Deployed using Vercel
-- ✅ Clean folder structure
+3. **API Returns 404**
+   - Verify the deployment URL is correct
+   - Check if the server started successfully
 
----
+4. **CORS Issues**
+   - The API is configured to accept requests from any origin
+   - If issues persist, check hosting platform settings
 
-**Good luck! You got this 🚀**
+## 📞 Support
+
+If you encounter any issues:
+1. Check the deployment logs in your hosting platform
+2. Verify all files are properly committed to GitHub
+3. Ensure environment variables are set correctly
+4. Test locally first with `npm start`
+
+## 🎯 Interview Tips
+
+When presenting your API:
+1. **Show the working URL** - Demonstrate it's live
+2. **Test with sample data** - Use the provided test case
+3. **Explain the logic** - How you separated numbers, alphabets, etc.
+4. **Show error handling** - Test with invalid input
+5. **Discuss deployment** - Which platform you chose and why
+
+Good luck with your interview! 🚀 
